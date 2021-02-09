@@ -4,52 +4,47 @@ import 'package:flutter/material.dart';
 
 class Chart1 extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
 
-  Chart1(this.seriesList, {this.animate});
+  Chart1(this.seriesList);
 
-  /// Creates a [BarChart] with sample data and no transition.
+  /// Creates a [BarChart]
   factory Chart1.withSampleData() {
     return new Chart1(
       _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList,
-      animate: animate,
+      seriesList
     );
   }
 
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
+  /// Create one series with sample hard coded food data.
+  static List<charts.Series<FavFoods, String>> _createSampleData() {
     final data = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
-      new OrdinalSales('2016', 100),
-      new OrdinalSales('2017', 75),
+      new FavFoods('Ice Cream', 30),
+      new FavFoods('Fruit', 25),
+      new FavFoods('Pizza', 50),
+      new FavFoods('Vegetables', 20),
     ];
 
     return [
-      new charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
+      new charts.Series<FavFoods, String>(
+        id: 'Favorite Foods',
+        colorFn: (_, __) => charts.MaterialPalette.pink.shadeDefault,
+        domainFn: (FavFoods number, _) => number.food,
+        measureFn: (FavFoods number, _) => number.number,
         data: data,
       )
     ];
   }
 }
 
-/// Sample ordinal data type.
-class OrdinalSales {
-  final String year;
-  final int sales;
+/// FavFoods Data type
+class  FavFoods{
+  final String food;
+  final int number;
 
-  OrdinalSales(this.year, this.sales);
+  FavFoods(this.food, this.number);
 }
