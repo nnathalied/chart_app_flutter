@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:chart_app_flutter/src/home.dart';
+import 'package:chart_app_flutter/home.dart';
 
 void main() => runApp(MyApp());
 
