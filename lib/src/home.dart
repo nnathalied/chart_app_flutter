@@ -6,8 +6,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SimpleScatterPlotChart(),
-      ),
+          child: SimpleBarChart(seriesList: seriesList, animate: animate)),
     );
   }
 }
