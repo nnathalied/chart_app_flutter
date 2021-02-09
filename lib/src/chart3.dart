@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 
 class Chart3 extends StatelessWidget {
   final List<charts.Series> seriesList;
-  final bool animate;
 
-  Chart3(this.seriesList, {this.animate});
+  Chart3(this.seriesList);
 
   /// Creates a [BarChart] with sample data and no transition.
   factory Chart3.withSampleData() {
     return new Chart3(
       _createSampleData(),
       // Disable animations for image tests.
-      animate: false,
     );
   }
 
@@ -20,8 +18,13 @@ class Chart3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.BarChart(
       seriesList,
-      animate: animate,
-    );
+      behaviors: [
+          new charts.ChartTitle('Chart 3',
+              behaviorPosition: charts.BehaviorPosition.top,
+              titleOutsideJustification: charts.OutsideJustification.start,
+              innerPadding: 18)
+        ]
+      );
   }
 
   /// Create one series with sample hard coded data.

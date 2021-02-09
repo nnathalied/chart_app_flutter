@@ -14,17 +14,20 @@ class HomePage extends StatelessWidget {
         body: ListView(padding: const EdgeInsets.all(10), children: <Widget>[
           Container(
             //CHART 1
-            height: 150,
+            padding: const EdgeInsets.all(8),
+            height: 250,
             child: Chart1.withSampleData(),
           ),
           Container(
             //CHART 2
-            height: 150,
+            padding: const EdgeInsets.all(8),
+            height: 250,
             child: Chart2.withSampleData(),
           ),
           Container(
             //CHART 3
-            height: 150,
+            padding: const EdgeInsets.all(8),
+            height: 250,
             child: Chart3.withSampleData(),
           )
         ]));
