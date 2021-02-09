@@ -16,7 +16,21 @@ class Chart1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
-      seriesList
+      seriesList,
+      // behaviors: [
+      //   new charts.ChartTitle('Top title text',
+      //       behaviorPosition: charts.BehaviorPosition.top,
+      //       titleOutsideJustification: charts.OutsideJustification.start,
+      //       // Set a larger inner padding than the default (10) to avoid
+      //       // rendering the text too close to the top measure axis tick label.
+      //       // The top tick label may extend upwards into the top margin region
+      //       // if it is located at the top of the draw area.
+      //       innerPadding: 18),
+      //   new charts.ChartTitle('Bottom title text',
+      //       behaviorPosition: charts.BehaviorPosition.bottom,
+      //       titleOutsideJustification:
+      //           charts.OutsideJustification.middleDrawArea),
+      // ],
     );
   }
 
