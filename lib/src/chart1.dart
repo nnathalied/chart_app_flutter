@@ -2,15 +2,15 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
-class SimpleBarChart extends StatelessWidget {
+class Chart1 extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
 
-  SimpleBarChart(this.seriesList, {this.animate});
+  Chart1(this.seriesList, {this.animate});
 
   /// Creates a [BarChart] with sample data and no transition.
-  factory SimpleBarChart.withSampleData() {
-    return new SimpleBarChart(
+  factory Chart1.withSampleData() {
+    return new Chart1(
       _createSampleData(),
       // Disable animations for image tests.
       animate: false,
