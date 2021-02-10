@@ -1,16 +1,18 @@
-import 'package:charts_flutter/flutter.dart' as charts;
+/// Bar chart with example of a legend
+/// Based on example from
+/// https://google.github.io/charts/flutter/example/legends/series_legend_with_measures
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class Chart3 extends StatelessWidget {
   final List<charts.Series> seriesList;
+  final bool animate;
 
-  Chart3(this.seriesList);
+  Chart3(this.seriesList, {this.animate});
 
-  /// Creates a [BarChart] with sample data and no transition.
   factory Chart3.withSampleData() {
     return new Chart3(
       _createSampleData(),
-      // Disable animations for image tests.
     );
   }
 
@@ -18,40 +20,86 @@ class Chart3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.BarChart(
       seriesList,
+      animate: animate,
+      barGroupingType: charts.BarGroupingType.grouped,
       behaviors: [
-          new charts.ChartTitle('Chart 3',
-              behaviorPosition: charts.BehaviorPosition.top,
-              titleOutsideJustification: charts.OutsideJustification.start,
-              innerPadding: 18)
-        ]
-      );
+        new charts.SeriesLegend(
+          position: charts.BehaviorPosition.end,
+          horizontalFirst: false,
+          cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
+          showMeasures: true,
+        ),
+      ],
+    );
   }
 
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
-    final data = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
-      new OrdinalSales('2016', 100),
-      new OrdinalSales('2017', 75),
+  /// Create series list
+  static List<charts.Series<UniversityData, String>> _createSampleData() {
+    final cowsData = [
+      new UniversityData('Davis', 150),
+      new UniversityData('Berkley', 0),
+      new UniversityData('LA', 10),
+      new UniversityData('Merced', 50),
+    ];
+
+    final dormData = [
+      new UniversityData('Davis', 25),
+      new UniversityData('Berkley', 10),
+      new UniversityData('LA', 50),
+      new UniversityData('Merced', 20),
+    ];
+
+    final foodData = [
+      new UniversityData('Davis', 65),
+      new UniversityData('Berkley', 30),
+      new UniversityData('LA', 75),
+      new UniversityData('Merced', 45),
+    ];
+
+    final profData = [
+      new UniversityData('Davis', 80),
+      new UniversityData('Berkley', 100),
+      new UniversityData('LA', 125),
+      new UniversityData('Merced', 75),
     ];
 
     return [
-      new charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: data,
-      )
+      new charts.Series<UniversityData, String>(
+        id: 'Cows',
+        domainFn: (UniversityData data, _) => data.school,
+        measureFn: (UniversityData data, _) => data.data,
+        data: cowsData,
+        // colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+      ),
+      new charts.Series<UniversityData, String>(
+        id: 'Dorm Rooms',
+        domainFn: (UniversityData data, _) => data.school,
+        measureFn: (UniversityData data, _) => data.data,
+        data: dormData,
+        //colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+      ),
+      new charts.Series<UniversityData, String>(
+        id: 'Food Trucks',
+        domainFn: (UniversityData data, _) => data.school,
+        measureFn: (UniversityData data, _) => data.data,
+        data: foodData,
+        // colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+      ),
+      new charts.Series<UniversityData, String>(
+        id: 'Buildings',
+        domainFn: (UniversityData data, _) => data.school,
+        measureFn: (UniversityData data, _) => data.data,
+        data: profData,
+        // colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+      ),
     ];
   }
 }
 
-/// Sample ordinal data type.
-class OrdinalSales {
-  final String year;
-  final int sales;
+/// data type
+class UniversityData {
+  final String school;
+  final int data;
 
-  OrdinalSales(this.year, this.sales);
+  UniversityData(this.school, this.data);
 }

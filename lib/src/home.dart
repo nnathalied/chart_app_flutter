@@ -7,29 +7,30 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text("Flutter Chart App Demo"),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text("Flutter Chart App Demo"),
+      ),
+
+      body: ListView(padding: const EdgeInsets.all(10), children: <Widget>[
+        Container(
+          //CHART 1
+          padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
+          height: 350,
+          child: Chart1.withSampleData(),
         ),
-        body: ListView(padding: const EdgeInsets.all(10), children: <Widget>[
-          Container(
-            //CHART 1
-            padding: const EdgeInsets.all(8),
-            height: 250,
-            child: Chart1.withSampleData(),
-          ),
-          Container(
-            //CHART 2
-            padding: const EdgeInsets.all(8),
-            height: 250,
-            child: Chart2.withSampleData(),
-          ),
-          Container(
-            //CHART 3
-            padding: const EdgeInsets.all(8),
-            height: 250,
-            child: Chart3.withSampleData(),
-          )
-        ]));
+        Container(
+          //CHART 2
+          padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
+          height: 350,
+          child: Chart2.withSampleData(),
+        ),
+        Container(
+          //CHART 3
+          padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
+          height: 350,
+          child: Chart3.withSampleData(),
+        )
+      ]));
   }
 }

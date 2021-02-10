@@ -1,4 +1,4 @@
-/// Scatter plot chart example
+/// Scatter plot chart example, based on scatter examples from https://google.github.io/charts/
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
@@ -7,76 +7,63 @@ class Chart2 extends StatelessWidget {
 
   Chart2(this.seriesList);
 
-  /// Creates a [ScatterPlotChart] with sample data and no transition.
   factory Chart2.withSampleData() {
     return new Chart2(
       _createSampleData()
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new charts.ScatterPlotChart(
       seriesList, 
       behaviors: [
-          new charts.ChartTitle('Chart 2',
-              behaviorPosition: charts.BehaviorPosition.top,
-              titleOutsideJustification: charts.OutsideJustification.start,
-              innerPadding: 18)
-        ],);
+        new charts.ChartTitle('Chart 2',
+            behaviorPosition: charts.BehaviorPosition.top,
+            titleOutsideJustification: charts.OutsideJustification.start,
+            innerPadding: 18)
+        ]
+      );
   }
 
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
+  static List<charts.Series<Data, int>> _createSampleData() {
     final data = [
-      new LinearSales(0, 5, 3.0),
-      new LinearSales(10, 25, 5.0),
-      new LinearSales(12, 75, 4.0),
-      new LinearSales(13, 225, 5.0),
-      new LinearSales(16, 50, 4.0),
-      new LinearSales(24, 75, 3.0),
-      new LinearSales(25, 100, 3.0),
-      new LinearSales(34, 150, 5.0),
-      new LinearSales(37, 10, 4.5),
-      new LinearSales(45, 300, 8.0),
-      new LinearSales(52, 15, 4.0),
-      new LinearSales(56, 200, 7.0),
+      new Data(287, 47),
+      new Data(41, 9),
+      new Data(240, 165),
+      new Data(171, 182),
+      new Data(50, 10),
+      new Data(208, 89),
+      new Data(165, 98),
+      new Data(230, 125),
+      new Data(216, 166),
+      new Data(135, 36),
+      new Data(214, 27),
+      new Data(173, 140),
+      new Data(299, 123),
+      new Data(192, 157),
+      new Data(179, 144),
+      new Data(77, 32),
+      new Data(135, 180),
+      new Data(89, 157),
+      new Data(50, 36),
+      new Data(63, 140),
     ];
 
-    final maxMeasure = 300;
-
     return [
-      new charts.Series<LinearSales, int>(
-        id: 'Sales',
-        // Providing a color function is optional.
-        colorFn: (LinearSales sales, _) {
-          // Bucket the measure column value into 3 distinct colors.
-          final bucket = sales.sales / maxMeasure;
-
-          if (bucket < 1 / 3) {
-            return charts.MaterialPalette.blue.shadeDefault;
-          } else if (bucket < 2 / 3) {
-            return charts.MaterialPalette.red.shadeDefault;
-          } else {
-            return charts.MaterialPalette.green.shadeDefault;
-          }
-        },
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        // Providing a radius function is optional.
-        radiusPxFn: (LinearSales sales, _) => sales.radius,
+      new charts.Series<Data, int>(
+        id: 'y',
+        domainFn: (Data y, _) => y.x,
+        measureFn: (Data y, _) => y.y,
         data: data,
       )
     ];
   }
 }
 
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-  final double radius;
+class Data {
+  final int x;
+  final int y;
 
-  LinearSales(this.year, this.sales, this.radius);
+  Data(this.x, this.y);
 }

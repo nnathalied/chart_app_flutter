@@ -1,4 +1,4 @@
-/// Bar chart example
+/// Bar chart example based on bar charts from https://google.github.io/charts/
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class Chart1 extends StatelessWidget {
     );
   }
 
-  /// Create one series with sample hard coded food data.
+  /// Create one series with sample hard coded data
   static List<charts.Series<FavFoods, String>> _createSampleData() {
     final data = [
       new FavFoods('Ice Cream', 30),
