@@ -29,6 +29,10 @@ class Chart3 extends StatelessWidget {
           cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
           showMeasures: true,
         ),
+        new charts.ChartTitle('Chart 3 - UC Data',
+        behaviorPosition: charts.BehaviorPosition.top,
+        titleOutsideJustification: charts.OutsideJustification.start,
+        innerPadding: 18)
       ],
     );
   }

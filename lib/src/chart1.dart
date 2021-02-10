@@ -7,18 +7,18 @@ class Chart1 extends StatelessWidget {
 
   Chart1(this.seriesList);
 
-  /// Creates a [BarChart]
   factory Chart1.withSampleData() {
     return new Chart1(
       _createSampleData(),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return new charts.BarChart(
       seriesList,
       behaviors: [
-        new charts.ChartTitle('Chart 1',
+        new charts.ChartTitle('Chart 1 - Favorite Foods',
             behaviorPosition: charts.BehaviorPosition.top,
             titleOutsideJustification: charts.OutsideJustification.start,
             innerPadding: 18),
@@ -30,7 +30,7 @@ class Chart1 extends StatelessWidget {
     );
   }
 
-  /// Create one series with sample hard coded data
+  /// Series with sample hard coded data
   static List<charts.Series<FavFoods, String>> _createSampleData() {
     final data = [
       new FavFoods('Ice Cream', 30),
